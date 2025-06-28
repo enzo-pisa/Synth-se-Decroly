@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Synthèses Decroly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1a73e8; /* Bleu Google moderne */
+      --primary-dark: #0d5bbc;
+      --primary-light: #e8f0fe;
+      --white: #ffffff;
+      --off-white: #f0f2f5; /* Un gris très très léger pour le fond de page */
+      --sub-page-bg: #e2e8f0; /* Nouvelle couleur de fond pour les sous-pages, un gris un peu plus marqué */
+      --text-dark: #202124;
+      --text-light: #5f6368;
+      --border: rgba(0, 0, 0, 0.08);
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.2s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    }
+    
+    body {
+      background-color: var(--sub-page-bg); 
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      line-height: 1.5;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale; 
+    }
+    
+    .header {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 100;
+      display: flex; 
+      flex-direction: column; 
+      gap: 0.5rem; 
+    }
+    
+    .linkedin-btn, .mail-btn { 
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: var(--white);
+      background: var(--primary);
+      padding: 0.5rem 1rem;
+      border-radius: 20px; 
+      transition: var(--transition);
+      font-weight: 500;
+      font-size: 0.875rem;
+      box-shadow: var(--shadow-sm); 
+    }
+    
+    .linkedin-btn:hover, .mail-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md); 
+    }
+
+    .main-container {
+      width: 100%;
+      max-width: 800px;
+      background: var(--white);
+      border-radius: 16px; 
+      box-shadow: var(--shadow-md);
+      padding: 2.5rem;
+      position: relative; 
+      border: 1px solid var(--border);
+    }
+    
+    .content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    h1 {
+      margin: 0 0 1.25rem 0;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-align: center;
+      position: relative;
+      padding-bottom: 0.75rem; 
+    }
+    
+    h1::after {
+        content: '';
+        display: block;
+        width: 80px;
+        height: 3px;
+        background: var(--primary);
+        border-radius: 3px;
+        margin: 0.75rem auto 0 auto; 
+    }
+    
+    .intro-text {
+      text-align: center;
+      padding: 0 1rem;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      color: var(--text-light);
+      margin-top: 1.5rem; 
+      margin-bottom: 2rem; 
+    }
+    
+    .buttons-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+      width: 100%;
+    }
+    
+    .grade-button {
+      padding: 1rem;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--primary);
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px; 
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+      text-decoration: none;
+      display: flex; 
+      align-items: center;
+      justify-content: center;
+      min-height: 50px; 
+    }
+    
+    .grade-button:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
+    
+    .grade-button:active {
+      background: var(--primary-light);
+      border-color: var(--primary-dark);
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    /* Style pour le bouton secret */
+    .secret-button {
+      position: absolute; 
+      bottom: 10px; 
+      left: 10px; 
+      width: 20px; 
+      height: 20px;
+      background-color: transparent; 
+      border: none; 
+      cursor: pointer; 
+      opacity: 0; 
+      z-index: 10; 
+      pointer-events: all; 
+    }
+    /* Optionnel: un léger visuel au survol pour le débogage/test, à retirer pour un vrai secret */
+    .secret-button:hover {
+        background-color: rgba(255, 0, 0, 0.1); 
+        opacity: 0.2; 
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .main-container {
+        padding: 2rem;
+      }
+      
+      h1 {
+        font-size: 1.75rem;
+        margin-bottom: 1.25rem;
+      }
+      h1::after {
+          margin: 0.6rem auto 0 auto;
+      }
+      .linkedin-btn, .mail-btn {
+        padding: 0.5rem; 
+        border-radius: 50%;
+        font-size: 0; 
+        width: 40px; 
+        height: 40px; 
+      }
+      .linkedin-btn svg, .mail-btn svg {
+          width: 20px; 
+          height: 20px;
+      }
+      .secret-button { 
+        bottom: 5px;
+        left: 5px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .main-container {
+        padding: 1.5rem;
+      }
+      
+      .buttons-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .linkedin-btn span, .mail-btn span {
+        display: none;
+      }
+      .linkedin-btn, .mail-btn {
+        padding: 0.5rem;
+        border-radius: 50%; 
+      }
+    }
+    
+    @media (max-width: 360px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+      
+      .intro-text {
+        font-size: 0.9375rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="https://www.linkedin.com/in/enzo-pisaneschi-233b67350/" target="_blank" class="linkedin-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="var(--white)">
+        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+      </svg>
+      <span>Enzo Pisaneschi</span>
+    </a>
+    
+    <a href="mailto:enzo@pisaneschi.be" class="mail-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="var(--white)">
+        <path d="M24 21h-24v-18h24v18zm-23-16.477v14.477h22v-14.477l-11 8.5-11-8.5zm21.084-2.523l-10.084 7.781-10.084-7.781h20.168z"/>
+      </svg>
+      <span>Me contacter</span>
+    </a>
+  </div>
+
+  <div class="main-container">
+    <div class="content">
+      <h1>Synthèses Decroly</h1>
+        
+      <p class="intro-text">
+        Ces synthèses ont été réalisées par Enzo Pisaneschi et Yosha Schor entre 2022 et 2025.
+        Elles peuvent contenir quelques imperfections ou erreurs, mais nous espérons qu'elles vous seront utiles.
+      </p>
+        
+      <div class="buttons-container">
+        <a href="synthese-10e.html" class="grade-button">10ème année</a>
+        <a href="synthese-11e.html" class="grade-button">11ème année</a>
+        <a href="synthese-12e.html" class="grade-button">12ème année</a>
+      </div>
+    </div>
+
+    <a href="https://youtube.com/shorts/5z9DEe9kQls?feature=share" target="_blank" class="secret-button" title="Cliquez ici si vous osez..."></a>
+  </div>
+</body>
+</html>
