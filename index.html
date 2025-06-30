@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Synthèses Decroly</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <title>Synthèses Decroly - Cours, Aide Scolaire, 10ème, 11ème, 12ème années</title> <meta name="description" content="Découvrez les synthèses complètes des cours de l'école Decroly pour les 10ème, 11ème et 12ème années. Des ressources pédagogiques utiles, réalisées par Enzo Pisaneschi et Yosha Schor."> <meta name="keywords" content="Decroly, Decro, Synthèse, Synthèses, Decroly Synthèses, Decroly Synthèse, Decro Synthèses, Decro Synthèse, Synthèses Decroly, Synthèse Decroly, Synthèses 12math6, Synthèse 12math6, Synthèses 11math6, Synthèse 11math6, cours Decroly, aide scolaire Decroly, ressources Decroly, Enzo Pisaneschi, Yosha Schor"> <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -247,7 +246,7 @@
     }
   </style>
 </head>
-<body>
+<body>  
   <div class="header">
     <a href="https://www.linkedin.com/in/enzo-pisaneschi-233b67350/" target="_blank" class="linkedin-btn">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="var(--white)">
@@ -280,7 +279,34 @@
       </div>
     </div>
 
-    <a href="https://youtube.com/shorts/5z9DEe9kQls?feature=share" target="_blank" class="secret-button" title="Cliquez ici si vous osez..."></a>
+    <a href="#" id="secret-video-button" class="secret-button" title="Cliquez ici si vous osez..."></a>
   </div>
+
+  <script>
+    // Récupérer le bouton par son ID
+    const secretButton = document.getElementById('secret-video-button');
+    
+    // Définir le code secret et l'URL de la vidéo
+    const secretCode = "AUTSIME"; // Le code que l'utilisateur doit entrer
+    const videoUrl = "https://youtube.com/shorts/5z9DEe9kQls?feature=share"; // L'URL de la vidéo
+
+    // Ajouter un écouteur d'événement pour le clic
+    secretButton.addEventListener('click', function(event) {
+      // Empêcher la redirection par défaut du lien (href="#")
+      event.preventDefault(); 
+      
+      // Demander à l'utilisateur de saisir le code
+      const enteredCode = prompt("Pour accéder à la vidéo, veuillez entrer le code :");
+
+      // Vérifier si le code entré est correct (la vérification est insensible à la casse)
+      if (enteredCode && enteredCode.toUpperCase() === secretCode) {
+        // Si le code est correct, rediriger vers la vidéo
+        window.open(videoUrl, '_blank');
+      } else {
+        // Si le code est incorrect ou si l'utilisateur annule
+        alert("Code incorrect ! Accès refusé.");
+      }
+    });
+  </script>
 </body>
 </html>
